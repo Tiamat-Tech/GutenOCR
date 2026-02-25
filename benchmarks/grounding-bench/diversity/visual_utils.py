@@ -88,6 +88,8 @@ def compute_embeddings(
 
         with torch.no_grad():
             feats = model.get_image_features(**inputs)
+            if not isinstance(feats, torch.Tensor):
+                feats = feats.pooler_output
             feats = feats / feats.norm(p=2, dim=-1, keepdim=True)
             all_embeds.append(feats.cpu().numpy())
 
