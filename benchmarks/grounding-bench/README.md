@@ -89,6 +89,7 @@ These scripts produce the benchmark dataset locally. The benchmark data is not h
 ### 1. Install dependencies
 
 ```bash
+# benchmarks/grounding-bench/diversity
 cd benchmarks/grounding-bench/diversity
 uv sync
 ```
@@ -96,7 +97,8 @@ uv sync
 ### 2. Rank all images by visual diversity
 
 ```bash
-uv run rank.py /data/pubmed rankings.csv
+# benchmarks/grounding-bench/diversity
+uv run python rank.py /data/pubmed rankings.csv
 ```
 
 This embeds every image in the test pool with SigLIP and ranks them by diversity. For a quick smoke-test, add `--limit 50` to process only 50 images.
@@ -104,7 +106,8 @@ This embeds every image in the test pool with SigLIP and ranks them by diversity
 ### 3. (Optional) Inspect the diversity curve
 
 ```bash
-uv run analyze_threshold.py rankings.csv
+# benchmarks/grounding-bench/diversity
+uv run python analyze_threshold.py rankings.csv
 ```
 
 Prints recommended sampling thresholds (elbow point, 50%/80%/90% coverage) to help choose `--top-k`.
@@ -112,11 +115,12 @@ Prints recommended sampling thresholds (elbow point, 50%/80%/90% coverage) to he
 ### 4. Extract the top-100 diverse samples
 
 ```bash
+# benchmarks/grounding-bench
 cd ..
 python sample.py /data/pubmed diversity/rankings.csv ./output --top-k 100
 ```
 
-`sample.py` reads the rankings in order, skips any sample whose `text.lines` annotation is missing or empty, and copies the image + JSON pair to `./output`. It stops when 100 valid samples have been collected and prints a summary of how many were skipped.
+`sample.py` (in `benchmarks/grounding-bench/`) reads the rankings produced by `diversity/rank.py`, skips any sample whose `text.lines` annotation is missing or empty, and copies the image + JSON pair to `./output`. It stops when 100 valid samples have been collected and prints a summary of how many were skipped.
 
 ---
 
