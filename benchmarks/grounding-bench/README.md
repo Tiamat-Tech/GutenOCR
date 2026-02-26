@@ -27,10 +27,10 @@ Benchmark splits are named `t{N}-{dataset}-{count}` (e.g. `t1-pubmed-100`), wher
 
 | Split | Task | Status |
 |---|---|---|
-| `t1-pubmed-100` | reading — full-page grounded line reading | **v1.0 (released)** |
-| `t2-pubmed-100` | detection — bounding boxes only | assigned, not yet released |
-| `t3-pubmed-100` | localized reading — text inside a given region | assigned, not yet released |
-| `t4-pubmed-100` | conditional detection — boxes matching a text query | assigned, not yet released |
+| `t1-pubmed-100` | reading — full-page grounded line reading | in progress |
+| `t2-pubmed-100` | detection — bounding boxes only | todo |
+| `t3-pubmed-100` | localized reading — text inside a given region | todo |
+| `t4-pubmed-100` | conditional detection — boxes matching a text query | todo |
 
 ---
 
