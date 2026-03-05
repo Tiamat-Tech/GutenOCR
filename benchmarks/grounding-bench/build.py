@@ -196,8 +196,8 @@ def cmd_sample(args: argparse.Namespace) -> None:
             print(f"  Missing: {stem}", file=sys.stderr)
             continue
 
-        shutil.copy2(img_path, os.path.join(args.output_dir, os.path.basename(img_path)))
-        shutil.copy2(json_path, os.path.join(args.output_dir, stem + ".json"))
+        shutil.copyfile(img_path, os.path.join(args.output_dir, os.path.basename(img_path)))
+        shutil.copyfile(json_path, os.path.join(args.output_dir, stem + ".json"))
         copied += 1
 
     print(f"\nDone.")
