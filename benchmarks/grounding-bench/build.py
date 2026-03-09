@@ -30,7 +30,6 @@ import sys
 import pandas as pd
 from tqdm import tqdm
 
-
 IMAGE_EXTS = (".png", ".jpg", ".jpeg")
 
 
@@ -82,8 +81,7 @@ def cmd_assign(args: argparse.Namespace) -> None:
         existing = df["task"].notna().sum()
         if existing > 0:
             print(
-                f"Warning: 'task' column already has {existing} assigned rows. "
-                "Pass --force to overwrite.",
+                f"Warning: 'task' column already has {existing} assigned rows. Pass --force to overwrite.",
                 file=sys.stderr,
             )
             if not getattr(args, "force", False):
@@ -117,8 +115,7 @@ def cmd_assign(args: argparse.Namespace) -> None:
 
     if len(valid_indices) < total_needed:
         print(
-            f"Error: only {len(valid_indices)} valid samples found, "
-            f"need {total_needed}.",
+            f"Error: only {len(valid_indices)} valid samples found, need {total_needed}.",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -200,7 +197,7 @@ def cmd_sample(args: argparse.Namespace) -> None:
         shutil.copyfile(json_path, os.path.join(args.output_dir, stem + ".json"))
         copied += 1
 
-    print(f"\nDone.")
+    print("\nDone.")
     print(f"  Copied  : {copied}")
     print(f"  Missing : {skipped_missing}")
     print(f"  Output  : {args.output_dir}")
